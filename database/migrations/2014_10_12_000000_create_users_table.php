@@ -22,6 +22,8 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->integer('github_id')->nullable();
+            $table->text('github_token')->nullable();
+            $table->text('github_refresh_token')->nullable();
         });
     }
 

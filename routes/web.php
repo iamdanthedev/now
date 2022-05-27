@@ -26,6 +26,8 @@ Route::get('/auth/redirect', function () {
 Route::get('/auth/callback', function () {
     $githubUser = Socialite::driver('github')->stateless()->user();
 
+    dump($githubUser);
+
     $user = User::updateOrCreate([
         'github_id' => $githubUser->id
     ], [
@@ -35,6 +37,8 @@ Route::get('/auth/callback', function () {
         'github_token' => $githubUser->token,
         'github_refresh_token' => $githubUser->refreshToken,
     ]);
+
+    dd($user);
 
     Auth::login($user);
 
