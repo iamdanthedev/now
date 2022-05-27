@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\ViewModel\TodoListItem;
+use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 
 class TodoItem extends Component
@@ -11,12 +12,15 @@ class TodoItem extends Component
     public string $text;
     public bool $done;
 
+    protected $listeners = ['todoListUpdated' => 'rerender'];
+
     private TodoListItem $todo;
 
-    public function mount(TodoListItem $todo) {
-        $this->todoId = $todo->id;
-        $this->text = $todo->text;
-        $this->done = $todo->done;
+    public function mount(int $todoId, string $text, bool $done) {
+        Log::info("TodoItem {$todoId} mount");
+        $this->todoId = $todoId;
+        $this->text = $text;
+        $this->done = $done;
     }
 
     public function render()
@@ -26,5 +30,10 @@ class TodoItem extends Component
 
     public function emitDone() {
         $this->emitUp('todoDone', $this->todoId, !$this->done);
+    }
+
+    public function rerender() {
+        Log::info('rerender');
+        $this->emit('refreshComponent');
     }
 }

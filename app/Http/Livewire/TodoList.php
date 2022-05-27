@@ -32,6 +32,10 @@ class TodoList extends Component
             $this->items[] = new TodoListItem($todo->id, $todo->text, $todo->done);
         }
 
+        Log::info($todos);
+
+        $this->emit('todoListUpdated');
+
         return view('livewire.todo-list');
     }
 
