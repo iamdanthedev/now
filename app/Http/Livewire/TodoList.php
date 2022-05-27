@@ -26,13 +26,13 @@ class TodoList extends Component
         Log::info("RENDERRRRRRRRRRRR");
 
         $todos = $this->showAll ? Todo::all() : Todo::where(['done' => false])->get();
-        $this->items = [];
+        $this->items = $todos;
 
-        foreach ($todos as $todo) {
-            $this->items[] = new TodoListItem($todo->id, $todo->text, $todo->done);
-        }
+//        foreach ($todos as $todo) {
+//            $this->items[] = new TodoListItem($todo->id, $todo->text, $todo->done);
+//        }
 
-        Log::info($todos);
+        Log::info($this->items);
 
         $this->emit('todoListUpdated');
 
@@ -70,5 +70,9 @@ class TodoList extends Component
     public function toggleShowCompleted() {
         $this->showAll = !$this->showAll;
         $this->emit('refreshComponent');
+    }
+
+    public function getKey($item) {
+        return $item->id;
     }
 }

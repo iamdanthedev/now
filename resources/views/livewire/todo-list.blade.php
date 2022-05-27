@@ -12,7 +12,11 @@
             </div>
 
             @foreach($items as $item)
-                <livewire:todo-item :todoId="$item->id" :text="$item->text" :done="$item->done" :wire:key="$item->id"></livewire:todo-item>
+                @livewire('todo-item', [
+                    'todoId' => $item->id,
+                    'text' => $item->text,
+                    'done' => $item->done,
+                ], key($item->id . $item->updated_at))
             @endforeach
         </div>
     @endempty
