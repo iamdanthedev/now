@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire;
 
-use App\ViewModel\TodoListItem;
 use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 
@@ -13,8 +12,6 @@ class TodoItem extends Component
     public bool $done;
 
     protected $listeners = ['todoListUpdated' => 'rerender'];
-
-    private TodoListItem $todo;
 
     public function mount(int $todoId, string $text, bool $done) {
         Log::info("TodoItem {$todoId} mount");
