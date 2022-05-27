@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Route::get('/auth/redirect', function () {
@@ -25,8 +25,6 @@ Route::get('/auth/redirect', function () {
 
 Route::get('/auth/callback', function () {
     $githubUser = Socialite::driver('github')->stateless()->user();
-
-    dump($githubUser);
 
     $user = User::updateOrCreate([
         'github_id' => $githubUser->id
@@ -38,11 +36,8 @@ Route::get('/auth/callback', function () {
         'github_refresh_token' => $githubUser->refreshToken,
     ]);
 
-    dd($user);
 
     Auth::login($user);
 
-    // $user->token
-
-    return redirect('/dashboard');
+    return redirect('/');
 });

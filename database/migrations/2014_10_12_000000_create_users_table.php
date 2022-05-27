@@ -25,6 +25,16 @@ return new class extends Migration
             $table->text('github_token')->nullable();
             $table->text('github_refresh_token')->nullable();
         });
+
+        Schema::create('todos', function (Blueprint $table) {
+            $table->id();
+            $table->integer('user_id');
+            $table->string('text');
+            $table->boolean('done');
+            $table->dateTime('created_at');
+            $table->dateTime('updated_at')->nullable();
+            $table->dateTime('done_at')->nullable();
+        });
     }
 
     /**

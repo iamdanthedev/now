@@ -8,6 +8,15 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+/**
+ * @property string $id
+ * @property string $name
+ * @property string $email
+ * @property string $password
+ * @property string $github_id
+ * @property string $github_token
+ * @property string $github_refresh_token
+ */
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
