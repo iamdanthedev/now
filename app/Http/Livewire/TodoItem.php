@@ -17,7 +17,7 @@ class TodoItem extends Component
         Log::info("TodoItem {$todoId} mount");
         $this->todoId = $todoId;
         $this->text = $text;
-        $this->done = $done;
+        $this->done = boolval($done);
     }
 
     public function render()
@@ -30,7 +30,7 @@ class TodoItem extends Component
     }
 
     public function rerender() {
-        Log::info('rerender');
+        Log::info("rerender {$this->id} {$this->text} {var_export($this->done)}");
         $this->emit('refreshComponent');
     }
 }
