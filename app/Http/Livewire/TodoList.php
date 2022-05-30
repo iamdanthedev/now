@@ -23,17 +23,8 @@ class TodoList extends Component
 
     public function render()
     {
-        Log::info("RENDERRRRRRRRRRRR");
-
         $todos = $this->showAll ? Todo::all() : Todo::where(['done' => false])->get();
         $this->items = $todos;
-
-//        foreach ($todos as $todo) {
-//            $this->items[] = new TodoListItem($todo->id, $todo->text, $todo->done);
-//        }
-
-        Log::info($this->items);
-
         $this->emit('todoListUpdated');
 
         return view('livewire.todo-list');

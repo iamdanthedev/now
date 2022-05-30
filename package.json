@@ -13,9 +13,11 @@
         "@types/react": "^18.0.9",
         "@types/react-dom": "^18.0.5",
         "axios": "^0.25",
+        "laravel-echo": "^1.11.7",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
         "postcss": "^8.1.14",
+        "pusher-js": "^7.1.0-beta",
         "ts-loader": "^9.3.0",
         "typescript": "^4.7.2"
     },
